@@ -206,7 +206,7 @@
     </div>
 
     <script>
-        let display = document.getElementById('display');
+        let display;
         let currentInput = '0';
         let shouldResetDisplay = false;
 
@@ -229,11 +229,16 @@
         // Обновление иконки темы
         function updateThemeIcon(theme) {
             const themeToggle = document.getElementById('themeToggle');
-            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            if (themeToggle) {
+                themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            }
         }
 
         // Инициализация при загрузке страницы
-        initTheme();
+        document.addEventListener('DOMContentLoaded', function() {
+            display = document.getElementById('display');
+            initTheme();
+        });
 
         function updateDisplay() {
             display.textContent = currentInput;

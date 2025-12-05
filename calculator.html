@@ -567,14 +567,6 @@
                 // Заменяем × на * для вычисления
                 let expression = currentInput.replace(/×/g, '*');
                 
-                // Проверяем на деление на ноль
-                if (expression.includes('/0') && !expression.includes('/0.')) {
-                    currentInput = 'Ошибка';
-                    updateDisplay();
-                    shouldResetDisplay = true;
-                    return;
-                }
-                
                 const result = Function('"use strict"; return (' + expression + ')')();
                 
                 if (isNaN(result) || !isFinite(result)) {

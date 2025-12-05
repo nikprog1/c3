@@ -206,7 +206,8 @@
     </div>
 
     <script>
-        let display;
+        // Инициализация элементов (скрипт в конце body, элементы уже в DOM)
+        let display = document.getElementById('display');
         let currentInput = '0';
         let shouldResetDisplay = false;
 
@@ -236,12 +237,17 @@
 
         // Инициализация при загрузке страницы
         document.addEventListener('DOMContentLoaded', function() {
-            display = document.getElementById('display');
+            // Убеждаемся, что display инициализирован (на случай, если скрипт выполнился раньше)
+            if (!display) {
+                display = document.getElementById('display');
+            }
             initTheme();
         });
 
         function updateDisplay() {
-            display.textContent = currentInput;
+            if (display) {
+                display.textContent = currentInput;
+            }
         }
 
         function appendNumber(number) {

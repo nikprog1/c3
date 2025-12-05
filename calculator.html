@@ -466,17 +466,35 @@
             const historyList = document.getElementById('historyList');
             if (!historyList) return;
 
+            // Очищаем список
+            historyList.innerHTML = '';
+
             if (operationHistory.length === 0) {
-                historyList.innerHTML = '<div class="history-empty">Журнал пуст</div>';
+                const emptyDiv = document.createElement('div');
+                emptyDiv.className = 'history-empty';
+                emptyDiv.textContent = 'Журнал пуст';
+                historyList.appendChild(emptyDiv);
                 return;
             }
 
-            historyList.innerHTML = operationHistory.map((item, index) => `
-                <div class="history-item" onclick="useHistoryItem(${index})">
-                    <div class="history-expression">${item.expression}</div>
-                    <div class="history-result">= ${item.result}</div>
-                </div>
-            `).join('');
+            // Создаем элементы безопасным способом через DOM API
+            operationHistory.forEach((item, index) => {
+                const historyItem = document.createElement('div');
+                historyItem.className = 'history-item';
+                historyItem.addEventListener('click', () => useHistoryItem(index));
+
+                const expressionDiv = document.createElement('div');
+                expressionDiv.className = 'history-expression';
+                expressionDiv.textContent = item.expression;
+
+                const resultDiv = document.createElement('div');
+                resultDiv.className = 'history-result';
+                resultDiv.textContent = '= ' + item.result;
+
+                historyItem.appendChild(expressionDiv);
+                historyItem.appendChild(resultDiv);
+                historyList.appendChild(historyItem);
+            });
         }
 
         // Использование элемента истории

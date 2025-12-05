@@ -20,8 +20,8 @@
             --operator-hover: #5568d3;
             --equals-bg: #764ba2;
             --equals-hover: #653a8a;
-            --clear-bg: #ff6b6b;
-            --clear-hover: #ee5a5a;
+            --clear-bg: #66BB6A;
+            --clear-hover: #55A55A;
             --history-bg: #f8f8f8;
             --history-border: #e0e0e0;
             --history-item-bg: #ffffff;
@@ -43,8 +43,8 @@
             --operator-hover: #5568d3;
             --equals-bg: #764ba2;
             --equals-hover: #653a8a;
-            --clear-bg: #ff6b6b;
-            --clear-hover: #ee5a5a;
+            --clear-bg: #66BB6A;
+            --clear-hover: #55A55A;
             --history-bg: #1e1e2e;
             --history-border: #3d3d5c;
             --history-item-bg: #2d2d44;
@@ -300,7 +300,7 @@
 
         .history-item:hover {
             background: var(--history-item-hover);
-            transform: translateX(5px);
+            transform: translateX(-5px);
         }
 
         .history-expression {
@@ -344,6 +344,16 @@
 </head>
 <body>
     <div class="calculator-container">
+        <div class="history-panel hidden" id="historyPanel">
+            <div class="history-header">
+                <div class="history-title">Журнал операций</div>
+                <button class="history-clear" onclick="clearHistory()">Очистить</button>
+            </div>
+            <div class="history-list" id="historyList">
+                <div class="history-empty">Журнал пуст</div>
+            </div>
+        </div>
+
         <div class="calculator">
             <button class="history-toggle" id="historyToggle" onclick="toggleHistory()" title="Показать журнал операций">
                 📋
@@ -376,16 +386,6 @@
             <button class="zero" onclick="appendNumber('0')">0</button>
             <button onclick="appendDecimal()">.</button>
         </div>
-        </div>
-
-        <div class="history-panel hidden" id="historyPanel">
-            <div class="history-header">
-                <div class="history-title">Журнал операций</div>
-                <button class="history-clear" onclick="clearHistory()">Очистить</button>
-            </div>
-            <div class="history-list" id="historyList">
-                <div class="history-empty">Журнал пуст</div>
-            </div>
         </div>
     </div>
 
